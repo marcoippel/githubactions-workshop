@@ -18,7 +18,7 @@ runs:
     working-directory: ${{ inputs.working-directory }}
 
   - name: Build
-    run: dotnet build --no-restore --output ./output
+    run: dotnet build --no-restore
     shell: bash
     working-directory: ${{ inputs.working-directory }}
 
@@ -26,4 +26,10 @@ runs:
     working-directory: ${{ inputs.working-directory }}.UnitTests
     run: |
       dotnet test --configuration ${{ inputs.config }}
+    shell: bash
+
+  - name: Publish
+    working-directory: ${{ inputs.working-directory }}
+    run: |
+      dotnet publish -c Release
     shell: bash
